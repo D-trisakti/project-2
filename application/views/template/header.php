@@ -20,9 +20,7 @@
     <!-- Icons made by www.flaticon.com/authors/freepik -->
     <link rel="icon" type="image/png" href="<?= base_url('assets/img/store-icon.png') ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        Tria Anugerah Shop - Beranda
-    </title>
+    <title>Tria Anugerah Shop</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=yes' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />

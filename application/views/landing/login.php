@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Masuk</a>
+                                <a href="<?=base_url('admin')?>" class="btn btn-primary btn-link btn-wd btn-lg">Masuk</a>
                             </div>
                         </form>
                     </div>
