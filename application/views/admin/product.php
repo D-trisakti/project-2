@@ -1,4 +1,8 @@
 <!-- table barang -->
+<div class ="col-md 4">
+    <a href ="<?=base_url();?>admin/add_product" class="btn btn-primary float-right">Tambahkan Produk</a>
+</div>
+<br><br>
 <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
