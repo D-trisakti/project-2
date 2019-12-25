@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
         if (!$this->session->userdata('email')) {
             redirect(site_url('Landing'));
         }
+        $this -> load -> model ('M_product');
     }
     public function index (){
         $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
@@ -23,7 +24,6 @@ class Admin extends CI_Controller {
         $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
         $data['name'] = $data['user']['nama'];
         $data['title'] = 'Produk';
-        $this -> load -> model ('M_product');
         $data['product'] = $this -> M_product -> getproduct();
         $this-> load -> view ('admin/header',$data);
         $this-> load -> view ('admin/sidebar',$data);
@@ -34,7 +34,6 @@ class Admin extends CI_Controller {
         $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
         $data['name'] = $data['user']['nama'];
         $data['title'] = 'Tambah Produk';
-
         $this -> form_validation -> set_rules('name','name','trim|required');
         $this -> form_validation -> set_rules('price','price','required');
         $this -> form_validation -> set_rules('total','total','required');
@@ -51,26 +50,60 @@ class Admin extends CI_Controller {
         }
         else
         {
-         $this -> load -> model ('M_product');
-         $this -> M_product -> add_product();
-        
-         $this -> session -> set_flashdata ('pesan', 
-            '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Produk Berhasil di tambahkan
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>' 
-        );
+        $upload_image = $_FILES['image']['name'];
+        if ($upload_image){
 
-         redirect('admin/product');
+            $config['upload_path']          = './assets/uploads/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 2048 ;
+            
+            $this->load->library('upload', $config);
         }
-        
+            if ( $this->upload->do_upload('image')) {
+                $this -> M_product -> add_product();
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Produk Berhasil di tambahkan
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+                );
+
+                redirect('admin/product');
+            } else {
+                 $this -> upload -> display_errors();
+            }
+        }   
     }
-    public function logout () {
-        $this -> session -> unset_userdata('email');
-        $this -> session -> unset_userdata('role');
+    public function delete_product($id){
+        $this -> M_product -> delete_product($id);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            Produk telah di hapus
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>'
+        );    
+        redirect ('admin/product');
+    }
+    public function detail_product($id){
+        $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
+        $data['name'] = $data['user']['nama'];
+        $data['title'] = 'Detail Produk';
+        $data['product'] = $this -> M_product -> getproductbyid($id);
+        $this-> load -> view ('admin/header',$data);
+        $this-> load -> view ('admin/sidebar',$data);
+        $this-> load -> view ('admin/detail_product',$data);
+        $this-> load -> view ('admin/footer');
+    }
+    public function logout()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role');
         redirect('Landing/index');
     }
-} 
-?>
+}

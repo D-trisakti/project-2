@@ -2,8 +2,8 @@
 <?php echo form_open_multipart('admin/add_product');?>   
     <div class="form-row">
         <div class="col-sm-4">
-        <input type='file' id="imageUpload" name="imageUpload" accept=".png, .jpg, .jpeg" onchange="loadFile(event)" >
-        
+        <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)" required>
+        <?= form_error('image','<small class="text-danger">','</small>'); ?>
         <div class="card bordered">
         <img width="350" height="auto" id="output"/>
         </div>

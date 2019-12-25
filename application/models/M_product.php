@@ -9,7 +9,8 @@ defined('BASEPATH') or exit ('no direct script to access allowed');
         'price' => htmlspecialchars ($this -> input -> post ('price'),true),
         'total' => htmlspecialchars ($this -> input -> post ('total'),true),
         'category' => htmlspecialchars ($this -> input -> post ('category'),true),
-        'deskripsi' => htmlspecialchars ($this -> input -> post ('deskripsi'),true)
+        'deskripsi' => htmlspecialchars ($this -> input -> post ('deskripsi'),true),
+        'image' => $this -> upload -> data ('file_name'),
        ];
        $this -> db -> insert ('product',$data);
         
@@ -21,16 +22,11 @@ defined('BASEPATH') or exit ('no direct script to access allowed');
         $this -> db -> from ('product');
         return $this -> db -> get()->result();
     }
- }
-//  $image = $_FILES['imageUpload']['name'];
-//             if($image){
-//                 $config['upload_path']          = './assets/uploads/';
-//                 $config['allowed_types']        = 'gif|jpg|png';
-//                 $config['max_size']             = 2048;
-//                 $this->load->library('upload', $config);
-
-//                 $this ->upload -> do_upload ('image');
-//             }
-//             else {
-//                 echo $this -> upload -> display_errors();
-//             }
+    public function delete_product($id){
+       $this -> db -> where ('id',$id);
+       $this -> db -> delete ('product');
+    }
+    public function getproductbyid($id){
+      return $this->db->get_where('product', ['id' => $id])->row_array();
+    }
+}
