@@ -222,4 +222,46 @@ class Admin extends CI_Controller {
         );    
         redirect ('admin/pegawai');
     }
+    public function add_pegawai () {
+        $this -> form_validation -> set_rules ('nama','nama','required|trim');
+        $this -> form_validation -> set_rules ('email','email','required|trim|valid_email|is_unique[user.email]',['is_unique' => 'email sudah ada']);
+        $this -> form_validation -> set_rules ('notelpon','notelpon','required|min_length[10]|max_length[13]|is_unique[user.notelpon]',[
+            'is_unique' => 'nomor telpon sudah ada',
+            'min_length' => 'nomor terlalu pendek',
+            'max_length' => 'nomor terlalu panjang'
+            ]);
+        $this -> form_validation -> set_rules ('password1','password1','required|trim|min_length[8]|max_length[32]|matches[password2]',[
+            'matches' => 'Password tidak sama',
+            'min_length' => 'Password terlalu pendek',
+            'max_length' => 'Password terlalu panjang',
+            'required' =>'Password tidak boleh kosong'
+        ]);
+        $this -> form_validation -> set_rules ('password2','password2','required|trim|matches[password1]',[
+            'required' =>'Password tidak boleh kosong',
+            'matches' => 'Password tidak sama',
+        ]);
+            if ($this -> form_validation -> run() == false){
+                $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
+        $data['name'] = $data['user']['nama'];
+        $data['title'] = 'Tambah Data Pegawai';
+        $this-> load -> view ('admin/header',$data);
+        $this-> load -> view ('admin/sidebar',$data);
+        $this-> load -> view ('admin/add_pegawai');
+        $this-> load -> view ('admin/footer');
+            }
+            else {
+                $this -> M_user -> add_pegawai();
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Data Pegawai Berhasil Ditambahkan
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+                );    
+                redirect ('admin/pegawai');
+            }
+        
+    }
 }

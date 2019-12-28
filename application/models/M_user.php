@@ -9,7 +9,8 @@ class M_user extends CI_Model {
             'email' => htmlspecialchars($this -> input -> post ('email',true)),
             'notelpon' => htmlspecialchars ($this -> input -> post ('notelpon',true)),
             'password' => password_hash($this -> input -> post ('password1'), PASSWORD_DEFAULT),
-            'role_id' => 3
+            'role_id' => 3,
+            'is_active' => 0
         ];
         $this -> db -> insert ('user',$data);
     }
@@ -18,13 +19,13 @@ class M_user extends CI_Model {
         return $this->db->get_where('user', ['role_id' => $id])->result_array();
     }
     public function active_user($id){
-        $var = 'aktif';
+        $var = '1';
         $this -> db -> set ('is_active',$var);
         $this->db->where('id', $id);
         $this->db->update('user');
     }
     public function deactive_user($id){
-        $var = 'tidak aktif';
+        $var = '0';
         $this -> db -> set ('is_active',$var);
         $this->db->where('id', $id);
         $this->db->update('user');
@@ -34,15 +35,26 @@ class M_user extends CI_Model {
         return $this->db->get_where('user', ['role_id' => $id])->result_array();
     }
     public function active_pegawai($id){
-        $var = 'aktif';
+        $var = '1';
         $this -> db -> set ('is_active',$var);
         $this->db->where('id', $id);
         $this->db->update('user');
     }
     public function deactive_pegawai($id){
-        $var = 'tidak aktif';
+        $var = '0';
         $this -> db -> set ('is_active',$var);
         $this->db->where('id', $id);
         $this->db->update('user');
+    }
+    public function add_pegawai(){
+        $data = [
+            'nama' => htmlspecialchars($this -> input ->post ('nama',true)),
+            'email' => htmlspecialchars($this -> input -> post ('email',true)),
+            'notelpon' => htmlspecialchars ($this -> input -> post ('notelpon',true)),
+            'password' => password_hash($this -> input -> post ('password1'), PASSWORD_DEFAULT),
+            'role_id' => 2,
+            'is_active' => 0
+        ];
+        $this -> db -> insert ('user',$data);
     }
 }
