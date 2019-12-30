@@ -28,7 +28,6 @@
                         <td>
                         <a href="<?php echo base_url(); ?>admin/delete_product/<?= $prod['id']; ?>" class="btn badge-danger float-right" onclick="return confirm ('yakin ?');">
                             Hapus </a>
-                        <div class="ml-3">
                             <a href="<?php echo base_url(); ?>admin/detail_product/<?= $prod['id']; ?>" class="btn badge-primary float-right mr-1"> Detail</a>
                             <a href="<?php echo base_url(); ?>admin/ubah_product/<?= $prod['id']; ?>" class="btn badge-success float-right mr-1"> Ubah</a>
                     </td>

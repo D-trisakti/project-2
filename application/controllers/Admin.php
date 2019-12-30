@@ -55,8 +55,8 @@ class Admin extends CI_Controller {
         if ($upload_image){
 
             $config['upload_path']          = './assets/uploads/';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 2048 ;
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 4048 ;
             $this->load->library('upload', $config);
         }
             if ( $this->upload->do_upload('image')) {
@@ -83,41 +83,60 @@ class Admin extends CI_Controller {
         }   
     }
 
-    public function ubah_product($id) {
-        $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
+    public function ubah_product($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['name'] = $data['user']['nama'];
         $data['title'] = 'Ubah Produk';
-        
-        $this -> form_validation -> set_rules('name','name','trim|required');
-        $this -> form_validation -> set_rules('price','price','required');
-        $this -> form_validation -> set_rules('total','total','required');
-        $this -> form_validation -> set_rules('category','category','trim|required');
-        $this -> form_validation -> set_rules('deskripsi','deskripsi','trim|required');
-        
 
-        if ($this -> form_validation -> run() == false) 
-        {
-            $data['product'] = $this -> M_product -> getproductbyid($id);
-            $this-> load -> view ('admin/header',$data);
-            $this-> load -> view ('admin/sidebar',$data);
-            $this-> load -> view ('admin/ubah_product',$data);
-            $this-> load -> view ('admin/footer');
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        $this->form_validation->set_rules('price', 'price', 'required');
+        $this->form_validation->set_rules('total', 'total', 'required');
+        $this->form_validation->set_rules('category', 'category', 'trim|required');
+        $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['product'] = $this->M_product->getproductbyid($id);
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/sidebar', $data);
+            $this->load->view('admin/ubah_product', $data);
+            $this->load->view('admin/footer');
+        } else {
+            
+            // cek jika ada gambar yang akan diupload
+            $upload_image = $_FILES['image']['name'];
+            // var_dump($upload_image);
+            // die;
+            if ($upload_image != "") {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '2048';
+                $config['upload_path'] = './assets/uploads/';
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('image')) {
+                    $old_image = $this->input->post('oldimg');
+                    unlink(FCPATH . 'assets/uploads/' . $old_image);
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                    $this->M_product->ubah_product();
+                    redirect('admin/product');
+                } else {
+                    $this->session->set_flashdata(
+                        'pesan',
+                        $this->upload->display_errors()
+                    );
+                    $data['product'] = $this->M_product->getproductbyid($id);
+                    $this->load->view('admin/header', $data);
+                    $this->load->view('admin/sidebar', $data);
+                    $this->load->view('admin/ubah_product', $data);
+                    $this->load->view('admin/footer');
+                }
+            }else{
+                $this->M_product->ubah_product();
+                redirect('admin/product');
+            }
         }
-        else
-        {
-            $this -> M_product -> ubah_product();
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                Produk telah di ubah
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>'
-            );    
-            redirect ('admin/product');
-        }
-}
+    }
 
     public function delete_product($id){
         $this -> M_product -> delete_product($id);
@@ -263,5 +282,25 @@ class Admin extends CI_Controller {
                 redirect ('admin/pegawai');
             }
         
+    }
+    public function detail_pegawai($id){
+        $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
+        $data['name'] = $data['user']['nama'];
+        $data['title'] = 'Detail Pegawai';
+        $data['worker'] = $this -> M_user -> get_user_by_id($id);
+        $this-> load -> view ('admin/header',$data);
+        $this-> load -> view ('admin/sidebar',$data);
+        $this-> load -> view ('admin/detail_user',$data);
+        $this-> load -> view ('admin/footer');
+    }
+    public function detail_user($id){
+        $data['user'] = $this -> db ->get_where ('user', ['email' => $this -> session -> userdata('email')])-> row_array();
+        $data['name'] = $data['user']['nama'];
+        $data['title'] = 'Detail User';
+        $data['worker'] = $this -> M_user -> get_user_by_id($id);
+        $this-> load -> view ('admin/header',$data);
+        $this-> load -> view ('admin/sidebar',$data);
+        $this-> load -> view ('admin/detail_user',$data);
+        $this-> load -> view ('admin/footer');
     }
 }

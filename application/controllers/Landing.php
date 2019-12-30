@@ -131,7 +131,7 @@ class Landing extends CI_Controller
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
                 </button>
-                <b>Success Alert:</b> Selamat Anda Berhasil Melakukan Pendaftaran Silahkan Login
+                <b>Selamat Anda Berhasil Melakukan Pendaftaran Silahkan melakukan aktivasi</b> 
             </div>
         </div>' 
         );
@@ -140,8 +140,10 @@ class Landing extends CI_Controller
     }
     public function category()
     {
+        $this -> load -> Model ('M_product');
+        $data['product'] = $this -> M_product -> getproduct();
         $this->load->view('template/header');
-        $this->load->view('landing/category');
+        $this->load->view('landing/category',$data);
         $this->load->view('template/footer');
     }
 }

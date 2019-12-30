@@ -25,7 +25,7 @@
                         <td><?=$worker['email'] ;?></td>
                         <td><?=$worker['notelpon']; ?></td>
                         <td>
-                            <?php if ($worker['is_active'] == 1){
+                            <?php if ($worker['is_active'] == 'aktif'){
                                echo '<div class="text-center mt-3"><i class="fas fa-check-circle" style="color:green"></i></div>';
                             }else{
                               echo  ' <div class="text-center mt-3"><i class="fas fa-times-circle"style="color:red"></i></div>';
@@ -35,7 +35,7 @@
                         <td>
                             <div class="ml-3">
                             <a href="<?php echo base_url(); ?>admin/deactive_pegawai/<?= $worker['id']; ?>" class="btn badge-danger float-right m-1" >Non-Aktifkan</a>
-                            <a href="<?php echo base_url(); ?>admin/detail_useruct/<?= $worker['id']; ?>" class="btn badge-primary float-right m-1" >Detail</a>
+                            <a href="<?php echo base_url(); ?>admin/detail_pegawai/<?= $worker['id']; ?>" class="btn badge-primary float-right m-1" >Detail</a>
                             <a href="<?php echo base_url(); ?>admin/active_pegawai/<?= $worker['id']; ?>" class="btn badge-success float-right m-1" >Aktifkan</a>
                     </td>
                     </tr>
