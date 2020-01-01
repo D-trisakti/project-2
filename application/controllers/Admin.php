@@ -303,4 +303,11 @@ class Admin extends CI_Controller {
         $this-> load -> view ('admin/detail_user',$data);
         $this-> load -> view ('admin/footer');
     }
+    public function laporan_barang(){
+        $data['product'] = $this -> M_product -> getproduct();
+        $this->load->library('pdf');
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-Barang.pdf";
+        $this->pdf->load_view('admin/invoice', $data);
+    }
 }

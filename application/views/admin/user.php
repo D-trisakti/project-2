@@ -32,10 +32,8 @@
                             }?>
                         </td>
                         <td>
-                        <a href="<?php echo base_url(); ?>admin/deactive_user/<?= $usr['id']; ?>" class="btn badge-danger float-right" >
-                            Non Aktifkan Akun</a>
-                        <div class="ml-3">
-                            <a href="<?php echo base_url(); ?>admin/detail_user/<?= $usr['id']; ?>" class="btn badge-primary float-right mr-1"> Detail</a>
+                        <a href="<?php echo base_url(); ?>admin/deactive_user/<?= $usr['id']; ?>" class="btn badge-danger float-right m-1" >Non Aktifkan Akun</a>
+                            <a href="<?php echo base_url(); ?>admin/detail_user/<?= $usr['id']; ?>" class="btn badge-primary float-right m-1"> Detail</a>
                             <a href="<?php echo base_url(); ?>admin/active_user/<?= $usr['id']; ?>" class="btn badge-success float-right m-1"> Aktifkan Akun</a>
                     </td>
                     </tr>

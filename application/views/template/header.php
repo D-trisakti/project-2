@@ -33,7 +33,7 @@
     <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
         <div class="logo-image">
             <h3 class="titles" id="titlemenu">
-                <img src=" <?= base_url('assets/img/logo.png') ?>" class="image-fluid">
+                <img src=" <?= base_url('assets/img/logo.png') ?>" class="image-fluid" style ="width:80px; height:auto;">
                 Tria Anugerah Military Fashion</h3>
         </div>
         <div class="collapse navbar-collapse">

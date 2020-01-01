@@ -3,7 +3,8 @@
     <div class ="container">
     <?= $this -> session -> flashdata('pesan');?>
     </div>
-    <a href ="<?=base_url();?>admin/add_product" class="btn btn-primary float-right">Tambahkan Produk</a>
+    <a href ="<?=base_url();?>admin/add_product" class="btn btn-primary float-right ml-1">Tambahkan Produk</a>
+    <a href ="<?=base_url();?>admin/laporan_barang" class="btn btn-info float-right">Cetak</a>
 </div>
 <br>
 <br>

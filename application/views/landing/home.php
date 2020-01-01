@@ -6,6 +6,10 @@
         <h3>
           Menyediakan Macam - Macam Perlengkapan Untuk TNI dan Polri.
         </h3>
+        
+      </div>
+      <div class="col-md-6">
+      <img src=" <?= base_url('assets/img/logo.png') ?>" class="image-fluid float-right" style ="width:25rem; height:auto;">
       </div>
     </div>
   </div>

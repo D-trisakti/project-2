@@ -3,7 +3,8 @@
     <div class ="container">
     <?= $this -> session -> flashdata('pesan');?>
     </div>
-    <a href ="<?=base_url();?>admin/add_pegawai" class="btn btn-primary float-right">Tambah data Pegawai</a>
+    <a href ="<?=base_url();?>admin/add_pegawai" class="btn btn-primary float-right ml-1">Tambah data Pegawai</a>
+    <a href ="<?=base_url();?>admin/laporan" class="btn btn-info float-right">Cetak</a>
 </div>
 <br>
 <br>
@@ -33,7 +34,7 @@
                         </td>
                        
                         <td>
-                            <div class="ml-3">
+                            <div class="ml-2">
                             <a href="<?php echo base_url(); ?>admin/deactive_pegawai/<?= $worker['id']; ?>" class="btn badge-danger float-right m-1" >Non-Aktifkan</a>
                             <a href="<?php echo base_url(); ?>admin/detail_pegawai/<?= $worker['id']; ?>" class="btn badge-primary float-right m-1" >Detail</a>
                             <a href="<?php echo base_url(); ?>admin/active_pegawai/<?= $worker['id']; ?>" class="btn badge-success float-right m-1" >Aktifkan</a>

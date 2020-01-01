@@ -5,8 +5,10 @@ class Landing extends CI_Controller
 
     public function index()
     {
+        $this -> load -> Model ('M_product');
+        $data['product'] = $this -> M_product -> getproduct();
         $this->load->view('template/header');
-        $this->load->view('landing/home');
+        $this->load->view('landing/home',$data);
         $this->load->view('template/footer');
     }
     public function login()
