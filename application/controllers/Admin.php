@@ -8,6 +8,9 @@ class Admin extends CI_Controller {
         if (!$this->session->userdata('email')) {
             redirect(site_url('Landing'));
         }
+        if ($this->session->userdata('role_id')==3) {
+            redirect('user');
+        }
         $this -> load -> model ('M_product');
         $this -> load -> model ('M_user');
     }
@@ -308,6 +311,6 @@ class Admin extends CI_Controller {
         $this->load->library('pdf');
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "laporan-Barang.pdf";
-        $this->pdf->load_view('admin/invoice', $data);
+        $this->pdf->load_view('admin/laporan', $data);
     }
 }

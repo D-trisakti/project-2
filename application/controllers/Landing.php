@@ -62,6 +62,36 @@ class Landing extends CI_Controller
                     redirect('landing/login');
                 }
             }
+            else if($data['role_id'] == 3){
+                if (password_verify($password,$data['password']))
+                {
+                    $this->session->set_userdata($data);
+                    $data = [
+                        'email' => $data['email'],
+                        'nama' => $data['nama'],
+                        'role' => $data['role_id'],
+                    ];
+                    
+                    redirect('user/index');
+                }
+                else
+                {
+                    $this -> session -> set_flashdata ('pesan', 
+                    '<div class="alert alert-danger">
+                    <div class="container">
+                    <div class="alert-icon">
+                    <i class="material-icons">error_outline</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <b>Password Salah</b> 
+                    </div>
+                    </div>' 
+                    );
+                    redirect('landing/login');
+                }
+            }
             else
             {
                 $this -> session -> set_flashdata ('pesan', 
