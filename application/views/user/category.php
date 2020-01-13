@@ -21,13 +21,13 @@
                             
                         </div>
                         <div class="container">
-                        <a href="<?php echo base_url(); ?>landing/order" class="btn btn-primary btn-round">Pesan</a>    
+                        <a href="<?php echo base_url(); ?>user/order_item/<?= $product['id_product']; ?>" class="btn btn-primary btn-round">Pesan</a>    
                         </div>
                     </div>
                     
                 <?php endforeach; ?>
             </div>
-
+            
         </div>
     </div>
 </div>

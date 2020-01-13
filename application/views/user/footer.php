@@ -27,6 +27,30 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="<?= base_url('assets/js/material-kit.js?v=2.0.6') ?>" type="text/javascript"></script>
+
+<script>
+jQuery(document).ready(function () {
+    $('#jumlah').keyup(function(){
+      v = parseInt($(this).val());
+        min = parseInt($(this).attr('min'));
+        max = parseInt($(this).attr('max'));
+
+        if (v < min){
+            $(this).val(min);
+        } else if (v > max){
+            $(this).val(max);
+        }
+      var a = parseInt($('#jumlah').val());
+      var b = parseInt($('#harga').val());
+      var c = a*b;
+      $('#totals').val(c);
+      // untuk form input hidden
+      total = c;
+      $('#total').val(total);
+    });
+});
+  </script>
+
 </body>
 
 </html>

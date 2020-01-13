@@ -10,7 +10,7 @@
                             <div class="card-header card-header-primary text-center">
                                 <h4 class="card-title">Sign In</h4>
                             </div>
-                            <p class="description text-center">Belum Punya Akun ? <a href="<?= base_url('landing/register') ?>">Daftar Disini ! </a></p>
+                            <p class="description text-center">Belum Punya Akun ? <a href="<?= base_url('landing/register') ?>#regis">Daftar Disini ! </a></p>
                             <div class="card-body">
                                 <div class="input-group">
                                     <div class="input-group-prepend">

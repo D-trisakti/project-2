@@ -33,35 +33,41 @@
     <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
         <div class="logo-image">
             <h3 class="titles" id="titlemenu">
-                <img src=" <?= base_url('assets/img/logo.png') ?>" class="image-fluid" style ="width:80px; height:auto;">
+                <img src=" <?= base_url('assets/img/logo.png') ?>" class="image-fluid" style="width:80px; height:auto;">
                 Tria Anugerah Military Fashion</h3>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="<?= base_url() ?>" class="nav-link">
+                    <a href="<?= base_url("user/home") ?>" class="nav-link">
                         <i class="material-icons">home</i> Beranda
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url() ?>landing/category" class="nav-link">
+                    <a href="<?= base_url() ?>user/product" class="nav-link">
                         <i class="material-icons">shopping_cart</i> Katalog
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url() ?>#abouts" class="nav-link">
+                    <a href="<?= base_url("user/home") ?>#abouts" class="nav-link">
                         <i class="material-icons">emoji_people</i> Tentang Kami
                     </a>
                 </li>
-                <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+                <li class="nav-item mr-5">
+                    <!-- Example single danger button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">account_circle</i> <?=$name;?>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="nav-link" href="<?=base_url('user');?>">Profile</a>
+                            <a class="nav-link" href="<?=base_url('user/change');?>">Edit Profile</a>
+                            <a class="nav-link" href="<?=base_url()?>user/shopping_cart/<?=$user['id'];?>">Keranjang Belanja</a>
+                            <a class="nav-link" href="<?=base_url()?>user/pesanan/<?=$user['id'];?>">Pesanan</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="nav-link" href="<?=base_url('user/logout');?>">Log Out</a>
+                        </div>
+                    </div>
+                </li>
         </div>
     </nav>

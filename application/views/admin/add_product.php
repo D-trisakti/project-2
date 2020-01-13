@@ -1,6 +1,6 @@
 <div class="card-wrapper">
 <?= $this -> session -> flashdata('pesan');?>
-<?php echo form_open_multipart('admin/add_product');?>   
+<?php echo form_open_multipart('product/add_product');?>   
     <div class="form-row">
     <div class="col-sm-8">
             <label for="name">Nama Produk</label>
@@ -45,6 +45,7 @@
         
         <div class="col-md-6 offset-md-3 text-center mt-2">
             <button type="submit" value="submit" class="btn btn-outline-info btn-round center"> Kirim </button>
+            <a href="<?= base_url('product');?>" class ="btn btn-outline-info btn-round center ">Kembali</a>
         </div>
    </div>
    </form>

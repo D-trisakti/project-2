@@ -95,6 +95,8 @@
                 border-collapse: collapse;
                 border-spacing: 0;
                 margin-bottom: 20px;
+                margin-left: -70px;
+                margin-right: auto;
             }
 
             table tr:nth-child(2n-1) td {
@@ -160,64 +162,41 @@
             <div id="logo">
                 <img src="assets/img/logo.png">
             </div>
-            <h1>LAPORAN PRODUK</h1>
+            <h1>LAPORAN PENJUALAN PRODUK</h1>
             <div id="project">
             </div>
         </header>
         <main>
-            <h3>TABEL PRODUK YANG TERSEDIA</h3>
-            <table>
+        <table>
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th class="service">NAMA PRODUK</th>
-                        <th class="desc">KATEGORI PRODUK</th>
+                        <th class="service">NOMOR TRANSAKSI</th>
+                        <th class="service">TANGGAL TRANSAKSI</th>
+                        <th class="desc">NAMA PRODUK</th>
                         <th>HARGA PRODUK</th>
                         <th>JUMLAH PRODUK</th>
+                        <th>TOTAL PEMBELIAN</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1;
-                    foreach ($product as $prod) : ?>
+                    foreach ($transaksi as $trs) : ?>
                         <tr>
                             <td><?= $no++ ?></th>
-                            <td class="service"><?= $prod['nama_product']; ?></td>
-                            <td class="desc"><?= $prod['category_product']; ?></td>
-                            <td class="desc">Rp.<?= $prod['price_product']; ?></td>
-                            <td class="desc"><?= $prod['stock_product']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            <br>
-            <br>
-            <h3>TABEL PRODUK YANG TIDAK TERSEDIA</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>NO</th>
-                        <th class="service">NAMA PRODUK</th>
-                        <th class="desc">KATEGORI PRODUK</th>
-                        <th>HARGA PRODUK</th>
-                        <th>JUMLAH PRODUK</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1;
-                    foreach ($produk as $prod) : ?>
-                        <tr>
-                            <td><?= $no++ ?></th>
-                            <td class="service"><?= $prod['nama_product']; ?></td>
-                            <td class="desc"><?= $prod['category_product']; ?></td>
-                            <td class="desc">Rp.<?= $prod['price_product']; ?></td>
-                            <td class="desc"><?= $prod['stock_product']; ?></td>
+                            <td class="service"><?= $trs['id_transaksi']; ?></td>
+                            <td class="service"><?= date('d F Y', strtotime($trs['tanggal']));?></td>
+                            <td class="desc"><?= $trs['nama_product']; ?></td>
+                            <td class="desc">Rp.<?= $trs['price_product']; ?></td>
+                            <td class="desc"><?= $trs['jumlah']; ?></td>
+                            <td class="desc"><?= $trs['jumlah_bayar']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </main>
         <footer>
-            Invoice was created on a computer and is valid without the signature and seal.
+            Report was created on <?= date('d F Y');?>
         </footer>
     </body>
 

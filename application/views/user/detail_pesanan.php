@@ -4,10 +4,8 @@
         <div class="section text-center">
             <h2 class="title">Shopping Cart</h2>
             <hr>
-            <?= $this->session->flashdata('pesan'); ?>
-            
-                    <a href="<?= base_url();?>user/product" class ="btn btn-warning btn-lg btn-round float-right">Kembali belanja</a>
             <div class="table-responsive">
+                <h5 class="title text-left">status :<?=$order[0]['status_invoice'];?></h5>
                 <table class="table table-shopping">
                     <thead>
                         <tr>
@@ -37,11 +35,6 @@
                             </td>
                             <td class="td-number align-middle">
                             <small>Rp.<?=$ordr['total_bayar'];?></small>
-                            </td>
-                            <td class="td-actions align-middle">
-                                <a href="<?=base_url();?>user/delete_item/<?=$ordr['id_pesanan'];?>" type="button" rel="tooltip" data-placement="Right" title="Remove item" class="btn btn-simple btn-md btn-round">
-                                    <i class="material-icons">close</i>
-                                </a>
                             </td>
                         </tr>
                         <?php endforeach ; ?>

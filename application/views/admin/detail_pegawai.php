@@ -9,7 +9,7 @@
             no telefon : <?= $worker['notelpon']; ?>
         </h4>
         <div class ="description">
-            <h4>Status : <?php if ($worker['is_active']=='aktif'){
+            <h4>Status : <?php if ($worker['role_id']=1){
                 echo "Aktif";
             }else {
                 Echo "Tidak Aktif";
@@ -26,7 +26,7 @@
     <div class="container">
         <div class ="row text-center">
         <div class="col text-center">
-        <a href="<?= base_url('admin/user');?>" class ="btn btn-info btn-sm ">Kembali</a>
+        <a href="<?= base_url('admin/pegawai');?>" class ="btn btn-info btn-sm ">Kembali</a>
         </div>
         </div>
     </div>

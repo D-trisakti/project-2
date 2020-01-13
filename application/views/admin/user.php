@@ -3,7 +3,6 @@
     <div class ="container">
     <?= $this -> session -> flashdata('pesan');?>
     </div>
-    <!-- <a href ="<?=base_url();?>admin/add_useruct" class="btn btn-primary float-right">Tambahkan Pengguna</a> -->
 </div>
 <br>
 <br>
@@ -19,7 +18,7 @@
                 </tr>
             </thead>
                 <tbody>
-                    <?php foreach ($user as $usr) : ?>
+                    <?php foreach ($users as $usr) : ?>
                     <tr>
                         <td><?= $usr['nama']; ?></td>
                         <td><?=$usr['email'] ;?></td>
